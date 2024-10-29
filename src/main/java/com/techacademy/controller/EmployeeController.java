@@ -101,7 +101,7 @@ public class EmployeeController {
 
     // 従業員更新画面
     @GetMapping(value = "/{code}/update")
-    public String update(@PathVariable("code") String code, Employee employee, Model model) { //Employee.javaの情報
+    public String edit(@PathVariable("code") String code, Employee employee, Model model) { //Employee.javaの情報
 
         if (code != null) {
             model.addAttribute("employee", employeeService.findByCode(code)); // DBからもってきたい
@@ -116,11 +116,11 @@ public class EmployeeController {
 
     // 従業員更新処理
     @PostMapping(value = "{code}/update") // フォームから送信された更新データを処理.
-    public String processUpdate(@Validated Employee employee, BindingResult res, Model model) {
+    public String update(@Validated Employee employee, BindingResult res, Model model) {
 
         // 入力チェック
         if (res.hasErrors()) {
-            return update(null, employee, model);
+            return edit(null, employee, model);
         }
 
 
@@ -128,7 +128,7 @@ public class EmployeeController {
 
         if (ErrorMessage.contains(result)) {
             model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
-            return update(null, employee, model);
+            return edit(null, employee, model);
         }
 
         return "redirect:/employees"; // 従業員一覧画面へ遷移
