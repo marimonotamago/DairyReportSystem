@@ -7,6 +7,8 @@ import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -22,10 +24,10 @@ import lombok.Data;
 @SQLRestriction("delete_flg = false")
 public class Reports {
 
-    // ID
+
+    // ID　主キー
     @Id
-    @Column(nullable = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     // 日付
