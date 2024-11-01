@@ -21,6 +21,7 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final PasswordEncoder passwordEncoder;
 
+
     @Autowired
     public EmployeeService(EmployeeRepository employeeRepository, PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
@@ -32,7 +33,7 @@ public class EmployeeService {
     public ErrorKinds save(Employee employee) {
 
         // パスワードチェック
-        ErrorKinds result = employeePasswordCheck(employee);
+        ErrorKinds result = employeePasswordCheck(employee); //ログインのときにDBチェックされるからここに書いてある
         if (ErrorKinds.CHECK_OK != result) {
             return result;
         }

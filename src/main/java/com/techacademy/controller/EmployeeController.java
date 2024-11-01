@@ -76,7 +76,7 @@ public class EmployeeController {
         }
 
         // 入力チェック
-        if (res.hasErrors()) {
+        if (res.hasErrors()) {  //Validatedの結果をもとにBindingResult1の分岐が起きる
             return create(employee);
         }
 
@@ -104,7 +104,7 @@ public class EmployeeController {
     public String edit(@PathVariable("code") String code, Employee employee, Model model) { //Employee.javaの情報
 
         if (code != null) {
-            model.addAttribute("employee", employeeService.findByCode(code)); // DBからもってきたい
+            model.addAttribute("employee", employeeService.findByCode(code)); // DBからcodeに紐づいた情報をもってきたい
             model.addAttribute("code", code);
         } else {
             model.addAttribute("employee", employee); // nullで飛ばされたときかどうかを判断 123行目のemployeeと同じ
@@ -120,14 +120,14 @@ public class EmployeeController {
 
         // 入力チェック
         if (res.hasErrors()) {
-            return edit(null, employee, model);
+            return edit(null, employee, model);//resの情報がmodelに入る
         }
 
 
         ErrorKinds result = employeeService.update(employee); //Errokindsという型
 
         if (ErrorMessage.contains(result)) {
-            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));
+            model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));//エラーメッセージ出力
             return edit(null, employee, model);
         }
 

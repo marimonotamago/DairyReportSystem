@@ -1,9 +1,11 @@
 package com.techacademy.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,9 +34,9 @@ public class Reports {
 
     // 日付
     @Column(length = 20, nullable = false)
-    @NotEmpty
-    @Length(max = 20)
-    private String reportDate;
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate reportDate;
 
     // タイトル
     @Column(length = 100, nullable = false)
@@ -45,6 +47,7 @@ public class Reports {
     // 内容
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     @NotEmpty
+    @Length(max = 600)
     private String content;
 
     // 削除フラグ(論理削除を行うため)
