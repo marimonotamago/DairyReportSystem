@@ -37,14 +37,9 @@
                                     </tr>
                                     <tr>
                                         <th>内容</th>
-                                        <td class="align-middle" th:text="${report.content}"></td>
+                                        <td><pre class="align-middle" th:text="${report.content}"></pre></td>
                                     </tr>
-                                    <tr>
-                                       　<th>内容</th>
-                                        <pre>
-                                        <td class="align-middle" th:text="${report.content}"></td>
-                                        </pre>
-                                     </tr>
+
                                     <tr>
                                         <th>登録日時</th>
                                         <td class="align-middle" th:text="${#temporals.format(report.createdAt, 'yyyy-MM-dd hh:mm:ss')}"></td>

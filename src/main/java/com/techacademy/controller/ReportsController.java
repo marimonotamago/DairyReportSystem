@@ -111,11 +111,11 @@ public class ReportsController {
         model.addAttribute("employeeName", userdetail.getEmployee().getName());
 
         if (id == null) {
-            model.addAttribute("report",reports);
+            model.addAttribute("reports",reports);
             return "reports/update";
 
         } else {
-            model.addAttribute("report", reportsService.findById(id));
+            model.addAttribute("reports", reportsService.findById(id));
             return "reports/update";
         }
     }
